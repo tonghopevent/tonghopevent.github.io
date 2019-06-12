@@ -38,7 +38,7 @@
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
-	<script src="/ga.js"></script>
+	<script src="ga.js"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -66,7 +66,7 @@
 		</div>
 	</header>
 
-	<div id="gtco-features">
+	<div id="gtco-features" style="display: none" class="view_pre_process">
 		<div class="gtco-container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
@@ -92,8 +92,8 @@
 						</span>
 						<div class="feature-copy">
 							<h3>ĐỢI DUYỆT</h3>
-							<p>Sau khi đã gửi, bài của bạn sẽ được hiện ở đây: <a href="https://tonghopevent.github.io/data/" target="_blank">https://tonghopevent.github.io/data/</a><br/>
-							Khi được duyệt, admin sẽ đánh dấu xanh vào tên dự án.</p>
+							<p>Admin sẽ phê duyệt bài của bạn.<br/>
+							Bạn sẽ nhận được thông báo ngay sau khi bài đăng được đặt lịch để đăng lên page.</p>
 						</div>
 					</div>
 
@@ -113,7 +113,9 @@
 				<div class="col-md-12">
 					<center>
 					<p><br/><br/>Nếu đã hiểu các lưu ý trên, hãy bấm vào đây:</p>
-					<a href="https://docs.google.com/forms/d/e/1FAIpQLSf8hDKPl1RHFTCiAIkas8b9SvqVrF-FR39uIvQW7Ilp0xjDxQ/viewform" class="btn btn-block btn-primary">TIẾP TỤC ➜</a>
+					<a class="btn btn-block btn-primary" id="next_step_btn">TIẾP TỤC ➜</a>
+					<br/>
+					Nếu bạn gặp lỗi, hãy thông báo cho admin tại: <a href="https://m.me/tonghopevent" target="_blank">https://m.me/tonghopevent</a><br/>
 					</center>
 				</div>
 				
@@ -123,6 +125,37 @@
 						<div class="overlay"></div>
 					</div>
 				</div-->
+			</div>
+		</div>
+	</div>
+	
+	<div id="gtco-features" style="display: none" class="view_must_inbox">
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+					<h2>Hướng dẫn</h2>
+					<p>
+						Để đăng dự án, cuộc thi lên fanpage, bạn hãy thực hiện theo hướng dẫn sau:<br/>
+						Bạn hãy inbox vào fanpage tại: <a href="https://m.me/tonghopevent" target="_blank">https://m.me/tonghopevent</a><br/>
+						Sau đó bấm vào nút <b>Đăng dự án/cuộc thi</b> ở menu nhé!<br/>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="gtco-features" style="display: block" class="view_loading">
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+					<h2>
+						<img src="images/loader.gif" /><br/>
+						Xin chờ...
+					</h2>
+					<p>
+						Nếu bạn phải đợi quá lâu, hãy thông báo lỗi cho admin tại: <a href="https://m.me/tonghopevent" target="_blank">https://m.me/tonghopevent</a><br/>
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -169,6 +202,33 @@
 	<script src="js/magnific-popup-options.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
+	
+	<script>
+		function getParameterByName(name) {
+			url = window.location.href;
+			name = name.replace(/[\[\]]/g, "\\$&");
+			var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+				results = regex.exec(url);
+			if (!results) return null;
+			if (!results[2]) return '';
+			return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+		
+		var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSds9-as5kOcCr9_gtQ-4xic8-CTSmsQaHEajU-OX4xGpz8wHQ/viewform?entry.450789842=';
+		
+		$(document).ready(function() {
+			$('.view_loading').hide();
+			var _id = getParameterByName('psid') || '';
+			var _psid = _id.match(/[0-9]+/);
+			if (_psid) {
+				var psid = _psid[0];
+				$('#next_step_btn').attr('href', FORM_URL + '' + psid);
+				$('.view_pre_process').show();
+			} else {
+				$('.view_must_inbox').show();
+			}
+		});
+	</script>
 
 	</body>
 </html>
