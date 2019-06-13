@@ -14,7 +14,7 @@ if ('serviceWorker' in navigator) {
   var installBtn = document.getElementById('installBtn');
   var installDismissBtn = document.getElementById('installDismissBtn');
   var installDialog = document.getElementById('installDialog');
-  var installDialogDontShow = _getCookie('installDialogDontShow');
+  var installDialogDontShow = _getCookie('installDialogHide');
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
@@ -26,7 +26,7 @@ if ('serviceWorker' in navigator) {
       deferredPrompt.userChoice
         .then((choiceResult) => {
           if (choiceResult.outcome === 'accepted') {
-            _setCookie('installDialogDontShow', 'true', 999);
+            _setCookie('installDialogHide', 'true', 999);
             console.log('User accepted the A2HS prompt');
           } else {
             console.log('User dismissed the A2HS prompt');
@@ -34,9 +34,9 @@ if ('serviceWorker' in navigator) {
           deferredPrompt = null;
         });
     });
-    installBtn.addEventListener('click', (e) => {
+    installDismissBtn.addEventListener('click', (e) => {
       installDialog.style.display = 'none';
-      _setCookie('installDialogDontShow', 'true', 999);
+      _setCookie('installDialogHide', 'true', 999);
     });
   });
 }
