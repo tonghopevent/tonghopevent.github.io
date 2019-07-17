@@ -1,0 +1,15 @@
+{
+  "short_name": "Tổng hợp dự án, cuộc thi",
+  "name": "Tổng hợp các dự án và cuộc thi dành cho học sinh, sinh viên",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "1200x1200",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#455a64",
+  "background_color": "#ffffff"
+}
