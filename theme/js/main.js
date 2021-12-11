@@ -1,4 +1,4 @@
-;(function () {
+window.NUI_THEME_INIT = (function () {
 	
 	'use strict';
 
@@ -286,4 +286,4 @@
 	});
 
 
-}());
+});
